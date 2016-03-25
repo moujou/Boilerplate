@@ -1,0 +1,29 @@
+body {
+	color: black;
+	background: #CCCCFF;
+}
+
+li a {
+    display: block;
+	font-size: 18px;
+	font-family: verdana;
+    color: grey;
+    padding: 8px 0 8px 16px;
+	background: white;
+	text-decoration: none;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 25%;
+
+}
+
+li a:hover {
+    background-color: grey;
+    color: black;
+}
+
+
