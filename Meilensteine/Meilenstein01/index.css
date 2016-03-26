@@ -1,29 +1,51 @@
+
+#header {
+	background-color:#F0E68C;
+	color: black;
+	font-family: verdana;
+	text-align:center;
+	font-size: 25px;
+	color: grey;	
+	display: block;
+	width: 100%;
+	margin-top:-2%;
+}
+
 body {
 	color: black;
-	background: #CCCCFF;
+	background: #FFFACD;
+}
+
+menu {
+	position: fixed;
+	padding: 30px 0px 150px;	
+	width: 60%;
 }
 
 li a {
     display: block;
+	text-align: right;
 	font-size: 18px;
 	font-family: verdana;
     color: grey;
     padding: 8px 0 8px 16px;
-	background: white;
+	background: #F0E68C;
 	text-decoration: none;
+		
 }
 
 ul {
 	list-style-type: none;
-	margin: 0;
 	padding: 0;
+	float: left;
 	width: 25%;
-
 }
 
 li a:hover {
-    background-color: grey;
-    color: black;
+    background-color: #8FBC8F;
 }
 
+li a:active {
+    background-color: gold;	
+}
 
