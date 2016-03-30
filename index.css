@@ -15,8 +15,9 @@
 	background-color:#F0E68C;	
 	font-family: verdana;
     color: grey;
-	width: 40%;
-	float: right;
+	width: auto;
+	right: 10px;
+	position: absolute; 
 }
 
 body {
