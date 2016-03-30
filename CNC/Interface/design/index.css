@@ -1,6 +1,60 @@
 
+#header {
+	background-color:#F0E68C;
+	color: black;
+	font-family: verdana;
+	text-align:center;
+	font-size: 25px;
+	color: grey;	
+	display: block;
+	margin-top:-2%;
+}
+
+#main {
+	display: block;
+	background-color:#F0E68C;	
+	font-family: verdana;
+    color: grey;
+	width: auto;
+	right: 10px;
+	position: absolute; 
+}
+
 body {
-	color: #ffffff;
-	background: black;
+	color: black;
+	background: #FFFACD;
+}
+
+menu {
+	position: fixed;
+	padding: 10px 0px 150px;	
+	width: 60%;
+}
+
+li a {
+    display: block;
+	text-align: right;
+	font-size: 18px;
+	font-family: verdana;
+    color: grey;
+    padding: 8px 0 8px 16px;
+	background: #F0E68C;
+	text-decoration: none;
+		
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	float: left;
+	width: 25%;
+}
+
+li a:hover {
+    background-color: #8FBC8F;
+}
+
+li a:active {
+    background-color: gold;	
 }
 
