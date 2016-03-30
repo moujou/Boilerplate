@@ -7,8 +7,16 @@
 	font-size: 25px;
 	color: grey;	
 	display: block;
-	width: 100%;
 	margin-top:-2%;
+}
+
+#main {
+	display: block;
+	background-color:#F0E68C;	
+	font-family: verdana;
+    color: grey;
+	width: 40%;
+	float: right;
 }
 
 body {
