@@ -1,29 +1,28 @@
+body {
+	color: #CC9900;
+	background: #262626;
+}
+
 header {
-	background-color:#F0E68C;
-	color: black;
+	color: #CC9900;
+	background-color:#151515;
 	font-family: verdana;
 	text-align:center;
 	font-size: 25px;
-	color: grey;	
 	display: block;
 	margin-top:-2%;
 }
 
 main {
 	display: block;
-	background-color:#F0E68C;	
+	color: #CC9900;
+	background-color: #151515;	
 	font-family: verdana;
-    color: grey;
 	width: auto;
 	right: 10px;
 	width: auto;
 	position: absolute; 
 	margin-top: 2%; 
-}
-
-body {
-	color: black;
-	background: #FFFACD;
 }
 
 menu {
@@ -37,9 +36,9 @@ li a {
 	text-align: right;
 	font-size: 18px;
 	font-family: verdana;
-    color: grey;
+    color: #CC9900;
     padding: 0em 8px 5pt;
-	background: #F0E68C;
+	background: #151515;
 	text-decoration: none;
 		
 }
@@ -52,7 +51,8 @@ ol {
 }
 
 li a:hover {
-    background-color: #8FBC8F;
+    background-color: #CC9900;
+    color: #151515;
 }
 
 li a:active {
