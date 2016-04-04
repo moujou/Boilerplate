@@ -16,8 +16,9 @@ main {
     color: grey;
 	width: auto;
 	right: 10px;
-	width: 49%;
+	width: auto;
 	position: absolute; 
+	margin-top: 2%; 
 }
 
 body {
@@ -27,9 +28,8 @@ body {
 
 menu {
 	position: fixed;
-	padding: 10px 0px 150px;	
+	padding: 0em 0px 0pt;	
 	width: 49%;
-		margin-top:-2%;
 }
 
 li a {
@@ -38,13 +38,13 @@ li a {
 	font-size: 18px;
 	font-family: verdana;
     color: grey;
-    padding: 8px 0 8px 16px;
+    padding: 0em 8px 5pt;
 	background: #F0E68C;
 	text-decoration: none;
 		
 }
 
-ul {
+ol {
 	list-style-type: none;
 	padding: 0;
 	float: left;
