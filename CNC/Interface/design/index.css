@@ -16,6 +16,7 @@ main {
     color: grey;
 	width: auto;
 	right: 10px;
+	width: 49%;
 	position: absolute; 
 }
 
@@ -27,7 +28,8 @@ body {
 menu {
 	position: fixed;
 	padding: 10px 0px 150px;	
-	width: 60%;
+	width: 49%;
+		margin-top:-2%;
 }
 
 li a {
