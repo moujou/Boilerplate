@@ -1,5 +1,4 @@
-
-#header {
+header {
 	background-color:#F0E68C;
 	color: black;
 	font-family: verdana;
@@ -10,7 +9,7 @@
 	margin-top:-2%;
 }
 
-#main {
+main {
 	display: block;
 	background-color:#F0E68C;	
 	font-family: verdana;
