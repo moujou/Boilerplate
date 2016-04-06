@@ -22,14 +22,16 @@ header {
 main {
 	/*Design*/
 	color: #CC9900;
-	background-color: #151515;	
+	background-color: #151515;
 	font-family: verdana;
 	display: block;
 	width: auto;
 	/*Position*/
-	position: absolute; 
+	position: absolute;
 	top: 15%;
 	right: 0px;
+	height: auto;
+	overflow: auto;
 }
 
 menu {
