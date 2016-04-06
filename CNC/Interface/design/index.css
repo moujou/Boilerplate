@@ -6,11 +6,12 @@ body {
 header {
 	color: #CC9900;
 	background-color:#151515;
+	position: absolute;
 	font-family: verdana;
 	text-align:center;
 	font-size: 25px;
 	display: block;
-	margin-top:-2%;
+	width: 100%;
 }
 
 main {
@@ -22,13 +23,14 @@ main {
 	right: 10px;
 	width: auto;
 	position: absolute; 
-	margin-top: 2%; 
+	top: 20%
 }
 
 menu {
 	position: fixed;
 	padding: 0em 0px 0pt;	
 	width: 49%;
+	top: 17%;
 }
 
 li a {
