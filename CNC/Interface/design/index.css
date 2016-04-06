@@ -35,6 +35,15 @@ main {
 	overflow: auto;
 }
 
+/*main > section {
+	position: absolute;
+	width: 100%;
+	top:100%;
+	left: 0px;
+	height: 100%;
+	
+}*/
+
 menu {
 	/*Design*/
 	width: 30%;
@@ -44,6 +53,20 @@ menu {
 	top: 15%;
 	left: 0px;
 	margin: 0px 0px 0px 0px;
+}
+
+footer {
+	display: block;
+	background-color: #151515;
+	color: #CC9900;
+	text-align:center;
+	position: absolute;
+	font-family: verdana;
+	font-size: 16px;
+	height: 30px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
 }
 
 /*Ueberschriften*/
