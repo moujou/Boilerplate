@@ -30,23 +30,37 @@ main {
 	/*Position*/
 	position: absolute;
 	top: 15%;
+	bottom: 0px;
+	left: 44.5%;
 	right: 0px;
-	height: auto;
-	overflow: auto;
+	height: 150px;
+	overflow: hidden;
 }
 
-/*main > section {
+main section{
 	position: absolute;
 	width: 100%;
-	top:100%;
+	top: 100%;
 	left: 0px;
+	right: 0px;
 	height: 100%;
-	
-}*/
+}
+
+main section: "tasks"{
+	top:100%;
+}
+
+#hstatus li a:active{
+	color:green;
+}
+
+#htask li a:active{
+	color: red;
+}
 
 menu {
 	/*Design*/
-	width: 30%;
+	width: 300px;
 	/*Position*/
 	position: fixed;
 	padding: 0em 0px 0pt;	
