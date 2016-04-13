@@ -18,6 +18,7 @@ header {
 	left: 0px;
 	right: 0px;
 	top:0px;
+	border-bottom-style: solid;
 }
 
 main {
@@ -35,7 +36,8 @@ main {
 	right: 0px;
 	height:150px;
 	overflow: hidden;
-	border-style: solid;
+	border: solid;
+	border-right:0px;
 }
 
 main > section{
@@ -66,7 +68,8 @@ menu {
 	top: 15%;
 	left: 0px;
 	margin: 0px 0px 0px 0px;
-	border-style:solid;
+	border: solid;
+	border-left: 0px;
 	background-color: #151515;
 
 
@@ -84,6 +87,8 @@ footer {
 	bottom: 0px;
 	right: 0px;
 	left: 0px;
+	border-top-style: solid;
+
 }
 
 /*Ueberschriften*/
