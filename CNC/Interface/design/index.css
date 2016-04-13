@@ -133,7 +133,7 @@ table tr td:nth-child(5) {
 th{
 	/*Design*/
 	text-align:center;
-	width:110px;
+	width:110px; 
 }
 
 tr {
