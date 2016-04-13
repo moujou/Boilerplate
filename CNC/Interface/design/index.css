@@ -37,25 +37,13 @@ main {
 	overflow: hidden;
 }
 
-main section{
-	position: absolute;
-	width: 100%;
-	top: 100%;
-	left: 0px;
-	right: 0px;
-	height: 100%;
-}
-
-main section: "tasks"{
-	top:100%;
-}
 
 #hstatus li a:active{
 	color:green;
 }
 
 #htask li a:active{
-	color: red;
+	color: green;
 }
 
 menu {
@@ -74,7 +62,7 @@ footer {
 	background-color: #151515;
 	color: #CC9900;
 	text-align:center;
-	position: absolute;
+	position: fixed;
 	font-family: verdana;
 	font-size: 16px;
 	height: 30px;
@@ -133,7 +121,7 @@ table tr td:nth-child(5) {
 th{
 	/*Design*/
 	text-align:center;
-	width:110px; 
+	width:110px;
 }
 
 tr {
