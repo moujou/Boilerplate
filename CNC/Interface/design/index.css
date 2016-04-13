@@ -33,10 +33,28 @@ main {
 	bottom: 0px;
 	left: 44.5%;
 	right: 0px;
-	height: 150px;
+	height:150px;
 	overflow: hidden;
+	border-style: solid;
 }
 
+main > section{
+	position:absolute;
+	width: 100%;
+	height: 100%;
+	left:0px;
+	right:0px;
+	bottom: auto;
+	top: -100%;
+	transition: all 500ms ease-out;
+	z-index: 1;
+}
+
+main > section:target{
+	top: 0%;
+	transition: all 500ms ease-out;
+	z-index: 2;
+}
 
 #hstatus li a:active{
 	color:green;
@@ -48,13 +66,15 @@ main {
 
 menu {
 	/*Design*/
-	width: 300px;
+	width: auto;
+	display:block;
 	/*Position*/
 	position: fixed;
 	padding: 0em 0px 0pt;	
 	top: 15%;
 	left: 0px;
 	margin: 0px 0px 0px 0px;
+
 }
 
 footer {
@@ -82,8 +102,8 @@ h1{
 ul {
 	/*Design*/
 	list-style-type: none;
-	width: 25%;
-	padding: 0;
+	width: 100%;
+	padding: 0em 0px 0pt;
 	/*Position*/
 	float: left;
 }
@@ -99,7 +119,8 @@ li a {
 	display: block;
 	text-decoration: none;
 	/*Position*/
-    padding: 0em 8px 5pt;		
+    padding: 0em 8px 5pt;	
+    width: auto;	
 }
 
 li a:hover {
