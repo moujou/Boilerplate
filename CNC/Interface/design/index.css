@@ -56,14 +56,6 @@ main > section:target{
 	z-index: 2;
 }
 
-#hstatus li a:active{
-	color:green;
-}
-
-#htask li a:active{
-	color: green;
-}
-
 menu {
 	/*Design*/
 	width: auto;
@@ -74,6 +66,9 @@ menu {
 	top: 15%;
 	left: 0px;
 	margin: 0px 0px 0px 0px;
+	border-style:solid;
+	background-color: #151515;
+
 
 }
 
@@ -106,13 +101,13 @@ ul {
 	padding: 0em 0px 0pt;
 	/*Position*/
 	float: left;
+	margin: 0px;
 }
 
 /*Aufzählungen*/
 li a {
 	/*Design*/
 	color: #CC9900;
-	background-color: #151515;
 	font-family: verdana;
 	text-align: right;
 	font-size: 18px;
@@ -132,6 +127,7 @@ li a:hover {
 li a:active {
 	/*Design*/
     background-color: gold;	
+    color: green;
 }
 
 /*Tabellen*/
