@@ -130,9 +130,14 @@ table tr td:nth-child(5) {
 	/*Design*/
 	text-align: center;
 }
-
-table th{
+th{
 	/*Design*/
-	text-align:left;
+	text-align:center;
+	width:110px;
+}
+
+tr {
+	text-align: center;
+	width: 100px;
 }
 
