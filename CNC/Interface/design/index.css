@@ -47,7 +47,7 @@ main > section{
 	left:0px;
 	right:0px;
 	bottom: auto;
-	top: -100%;
+	top: 100%;
 	transition: all 500ms ease-out;
 	z-index: 1;
 }
