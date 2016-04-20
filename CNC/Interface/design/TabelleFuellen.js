@@ -23,7 +23,7 @@ var initialize = function() {
 				code += '<td>' + entry.ip + '</td>';
 				code += '<td>' + entry.task + '</td>';
 				code += '<td>' + entry.workload + '</td>';
-				code += '<td><button class="button" id="button_id' + entry.id + '" onClick="toggleText(this.id);">Start</button></td>';
+				code += '<td><button class="button" id="button_id' + entry.id +'" onclick="toggleButton(this.id);">Start</button></td>';
 				code += '</tr>';
 
 			}

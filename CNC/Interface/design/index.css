@@ -34,7 +34,7 @@ main {
 	bottom: 0px;
 	left: 44.5%;
 	right: 0px;
-	height:20%;
+	height:30%;
 	border: solid;
 	border-right:0px;
 }
@@ -43,7 +43,7 @@ main > section{
 	position:absolute;
 	width: 100%;
 	height: 100%;
-	left:0px;
+	left: 0%;
 	right:0px;
 	bottom: auto;
 	top: 100%;
@@ -70,8 +70,6 @@ menu {
 	border: solid;
 	border-left: 0px;
 	background-color: #151515;
-
-
 }
 
 footer {
@@ -139,6 +137,12 @@ table tr td:nth-child(5) {
 	/*Design*/
 	text-align: center;
 }
+
+table tr:hover{
+	background: #CC9900;
+	color: #151515;
+}
+
 th{
 	/*Design*/
 	text-align:center;
