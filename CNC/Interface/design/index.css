@@ -34,8 +34,7 @@ main {
 	bottom: 0px;
 	left: 44.5%;
 	right: 0px;
-	height:150px;
-	overflow: hidden;
+	height:20%;
 	border: solid;
 	border-right:0px;
 }
@@ -49,13 +48,13 @@ main > section{
 	bottom: auto;
 	top: 100%;
 	transition: all 500ms ease-out;
-	z-index: 1;
 }
 
-main > section:target{
+main > section:target {
 	top: 0%;
 	transition: all 500ms ease-out;
 	z-index: 2;
+	overflow-x: auto;
 }
 
 menu {
