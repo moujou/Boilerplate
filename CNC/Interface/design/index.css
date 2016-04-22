@@ -14,7 +14,7 @@ header {
 	display: block;
 	width: 100%;
 	/*Position*/
-	position: absolute;
+	position: fixed;
 	left: 0px;
 	right: 0px;
 	top:0px;
@@ -34,7 +34,7 @@ main {
 	bottom: 0px;
 	left: 44.5%;
 	right: 0px;
-	height:30%;
+	height: 40%;
 	border: solid;
 	border-right:0px;
 }
@@ -47,13 +47,14 @@ main > section{
 	right:0px;
 	bottom: auto;
 	top: 100%;
-	transition: all 500ms ease-out;
+	visibility: hidden;
+	overflow-x: hidden;
 }
 
 main > section:target {
 	top: 0%;
+	visibility: visible;
 	transition: all 500ms ease-out;
-	z-index: 2;
 	overflow-x: auto;
 }
 
@@ -138,7 +139,7 @@ table tr td:nth-child(5) {
 	text-align: center;
 }
 
-table tr:hover{
+table td:hover{
 	background: #CC9900;
 	color: #151515;
 }
