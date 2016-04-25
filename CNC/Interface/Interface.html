@@ -6,8 +6,9 @@
 	<link rel = "stylesheet" href = "./design/index.css">
 	<link rel = "stylesheet" media = "print" href= "./design/print.css">
 	
-	<script type = "text/javascript" src = "./design/TabelleFuellen.js"></script>
-	<script type = "text/javascript" src = "./design/ButtonFunction.js"></script>
+	<script src = "./design/TabelleFuellen.js"></script>
+	<script src = "./design/ButtonFunction.js"></script>
+	<script src = "./design/sorttable.js"></script>
 	
 	<title> CNC Interface </title>
 </head>
@@ -30,14 +31,14 @@
 	
 	<main>
 		<section id = "status">
-			<table id="status-overview">
+			<table id="status-overview" class = "sortable">
 				<thead>
 					<tr>
 						<th>ID</th>
 						<th>Workload</th>
 						<th>IP</th>
 						<th>Task</th>
-						<th>Stop/Start Button</th>
+						<th class="sorttable_nosort">Stop/Start Button</th>
 					</tr>
 				</thead>
 				<tbody>
