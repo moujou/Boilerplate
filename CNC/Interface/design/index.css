@@ -140,7 +140,7 @@ table tr td:nth-child(5) {
 	text-align: center;
 }
 
-table td:hover{
+table thead th:hover{
 	background: #CC9900;
 	color: #151515;
 }
@@ -154,5 +154,28 @@ th{
 tr {
 	text-align: center;
 	width: 100px;
+}
+.buttonMain{
+	width: 50px;
+	font-family: Courier New;
+ 	color: #cc9900;
+  	font-size: 16px;
+ 	background: #00871d;
+ 	border: none;
+ 	padding: 0px 0px 0px 0px;
+ 	text-decoration: none;
+}
+
+#button{
+	-webkit-border-radius: 9;
+    -moz-border-radius: 9;
+  	border-radius: 9px;
+  	font-family: Arial;
+  	color: #000000;
+  	font-size: 16px;
+  	background: #fcfffd;
+  	padding: 0px 0px 0px 0px;
+  	text-decoration: none;
+  	border:none;
 }
 
