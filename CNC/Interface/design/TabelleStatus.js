@@ -23,16 +23,22 @@ var initialize = function() {
 				code += '<td>' + entry.ip + '</td>';
 				code += '<td>' + entry.task + '</td>';
 				code += '<td>' + entry.workload + '</td>';
-				code += '<td><button class="buttonMain" id="button_id' + entry.id +'" onclick="toggleButton(this.id);">Start</button></td>';
+				code += '<td><button class="buttonMain" id="button_id' + entry.id +'" onclick="toggleButton(this.id);">';
+				
+				if (entry.workload === 0) {
+					code += 'Stop';
+				} else {
+					code += 'Start';
+				}
+				code += '</button></td>'
 				code += '</tr>';
-
 			}
 
 			content.innerHTML = code;
 
 		} else {
 
-			content.innerHTML = 'Failed to load :(';
+			content.innerHTML = 'FAIL';
 
 		}
 	

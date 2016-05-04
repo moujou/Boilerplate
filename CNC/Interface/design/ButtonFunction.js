@@ -6,3 +6,11 @@ var toggleButton = function(id){
         document.getElementById(id).innerHTML = "Start";
     }
 };
+
+var refreshButtonTask = function() {
+	taskRequest();
+}
+
+var refreshButtonStatus = function() {
+	initialize();
+}

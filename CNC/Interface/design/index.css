@@ -135,8 +135,12 @@ li a:active {
 }
 
 /*Tabellen*/
-table tr td:nth-child(5) {
 	/*Design*/
+table {
+	width: 100%;
+}
+
+table tr td:nth-child(5) {
 	text-align: center;
 }
 
@@ -178,4 +182,5 @@ tr {
   	text-decoration: none;
   	border:none;
 }
+
 
