@@ -23,15 +23,13 @@ var initialize = function() {
 				code += '<td>' + entry.ip + '</td>';
 				code += '<td>' + entry.task + '</td>';
 				code += '<td>' + entry.workload + '</td>';
-				code += '<td><button class="buttonMain" id="button_id' + entry.id +'" onclick="toggleButton(this.id);">';
+				code += '<td><button class="button" id="' + entry.id +'" onclick="toggleButton(this.id);">';
 				
 				if (entry.workload === 0) {
-					code += 'Stop';
+					code += 'Start </button></td>';
 				} else {
-					code += 'Start';
+					code += 'Stop </button></td>';
 				}
-				code += '</button></td>'
-				code += '</tr>';
 			}
 
 			content.innerHTML = code;

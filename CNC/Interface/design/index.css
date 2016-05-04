@@ -159,7 +159,7 @@ tr {
 	text-align: center;
 	width: 100px;
 }
-.buttonMain{
+.button{
 	width: 50px;
 	font-family: Courier New;
  	color: #cc9900;
@@ -170,17 +170,5 @@ tr {
  	text-decoration: none;
 }
 
-#button{
-	-webkit-border-radius: 9;
-    -moz-border-radius: 9;
-  	border-radius: 9px;
-  	font-family: Arial;
-  	color: #000000;
-  	font-size: 16px;
-  	background: #fcfffd;
-  	padding: 0px 0px 0px 0px;
-  	text-decoration: none;
-  	border:none;
-}
 
 
