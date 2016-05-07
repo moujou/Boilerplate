@@ -1,12 +1,13 @@
 body {
-	color: #CC9900;
+	color: #CC9966;
 	background-color: #262626;
+	overflow-y: hidden;
 }
 
 /*Tags*/
 header {
 	/*Design*/
-	color: #CC9900;
+	color: #CC9966;
 	background-color:#181818;
 	font-family: verdana;
 	text-align:center;
@@ -18,12 +19,11 @@ header {
 	left: 0px;
 	right: 0px;
 	top:0px;
-	border-bottom-style: solid;
 }
 
 main {
 	/*Design*/
-	color: #CC9900;
+	color: #CC9966;
 	background-color: #181818;
 	font-family: verdana;
 	display: block;
@@ -34,9 +34,7 @@ main {
 	bottom: 0px;
 	left: 44.5%;
 	right: 0px;
-	height: 40%;
-	border: solid;
-	border-right:0px;
+	height: 45%;
 }
 
 main > section{
@@ -60,24 +58,22 @@ main > section:target {
 
 menu {
 	/*Design*/
-	width: auto;
+	width: 8%;
 	display:block;
-	height: 70%;
+	height: 100%;
 	/*Position*/
 	position: fixed;
 	padding: 0em 0px 0pt;	
-	top: 15%;
+	top: 60px;
 	left: 0px;
 	margin: 0px 0px 0px 0px;
-	border: solid;
-	border-left: 0px;
 	background-color: #181818;
 }
 
 footer {
 	display: block;
 	background-color: #181818;
-	color: #CC9900;
+	color: #CC9966;
 	text-align:center;
 	position: fixed;
 	font-family: verdana;
@@ -86,8 +82,6 @@ footer {
 	bottom: 0px;
 	right: 0px;
 	left: 0px;
-	border-top-style: solid;
-
 }
 
 /*Ueberschriften*/
@@ -111,27 +105,26 @@ ul {
 /*Aufzählungen*/
 li a {
 	/*Design*/
-	color: #CC9900;
+	color: #CC9966;
 	font-family: verdana;
 	text-align: right;
-	font-size:25px;
+	font-size:30px;
 	display: block;
 	text-decoration: none;
 	/*Position*/
-    padding: 0em 8px 5pt;	
+    padding: 0em 8px 5pt;
     width: auto;	
 }
 
 li a:hover {
 	/*Design*/
-    background-color: #CC9900;
+    background-color: #9966FF;
     color: #151515;
 }
 
 li a:active {
 	/*Design*/
-    background-color: gold;	
-    color: green;
+    background-color: #CC9966;	
 }
 
 /*Tabellen*/
@@ -145,7 +138,7 @@ table tr td:nth-child(5) {
 }
 
 table thead th:hover{
-	background: #CC9900;
+	background: #9966FF;
 	color: #151515;
 }
 
@@ -160,14 +153,24 @@ tr {
 	width: 100px;
 }
 .button{
-	width: 50px;
-	font-family: Courier New;
- 	color: #cc9900;
-  	font-size: 16px;
- 	background: #00871d;
+	width: 60px;
+	font-family: verdana;
+	background: #FFFFF;
+ 	color: #CC9966;
+  	font-size: 18px;
  	border: none;
- 	padding: 0px 0px 0px 0px;
+	border-radius: 30px;
  	text-decoration: none;
+}
+
+#refresherButton {
+	position: fixed;
+	height: 112px;
+	width: 112px;
+	right:30px;
+	bottom:60px;
+	border-style: none;
+	background-image: url(../images/refreshButton.png);
 }
 
 

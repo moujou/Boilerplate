@@ -26,13 +26,25 @@ var initialize = function() {
 				code += '<td><button class="button" id="' + entry.id +'" onclick="toggleButton(this.id);">';
 				
 				if (entry.workload === 0) {
-					code += 'Start </button></td>';
+					code += 'Start</button></td>';
 				} else {
-					code += 'Stop </button></td>';
+					code += 'Stop</button></td>';
 				}
 			}
 
 			content.innerHTML = code;
+			
+				for (var d = 0, dl = data.length; d < dl; d++) {
+
+				var entry = data[d];
+
+				if (entry.workload === 0) {
+					document.getElementById(entry.id).style.background = "#006600";
+				} else {
+					document.getElementById(entry.id).style.background = "#990000";
+				}
+			}
+			
 
 		} else {
 

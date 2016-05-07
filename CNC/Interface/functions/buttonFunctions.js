@@ -1,23 +1,14 @@
 var toggleButton = function(id){
-	
-    if (document.getElementById(id).innerHTML == "Start") {
+    if (document.getElementById(id).innerHTML === "Start") {
 		document.getElementById(id).innerHTML = "Stop";
+		document.getElementById(id).style.background = "#990000";
 		sendActionInfo(id,"true");
-		
-
     } else {
         document.getElementById(id).innerHTML = "Start";
+		document.getElementById(id).style.background = "#006600";
         sendActionInfo(id,"false");
     }
 };
-
-var refreshButtonTask = function() {
-	taskRequest();
-}
-
-var refreshButtonStatus = function() {
-	initialize();
-}
 
 var sendActionInfo = function(id, cmd) {
 	
@@ -39,7 +30,7 @@ var sendActionInfo = function(id, cmd) {
 	data = {'id': parseInt(id,10), 'status': mo};
 
 	xhr.send(JSON.stringify(data));
-}
+};
 
 var sendApiTask = function(id, type, data) {
 	
@@ -57,4 +48,15 @@ var sendApiTask = function(id, type, data) {
 					'output' : null} 
 	};
 	xhr.send(JSON.stringify(data));
+};
+
+var refreshButton = function() {
+	
+	var aktuelleSeite = window.location.hash;
+	
+	if(aktuelleSeite === "#status") {
+		initialize();
+	} else {
+		taskRequest();
+	}
 };
