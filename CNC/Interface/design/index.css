@@ -32,7 +32,7 @@ main {
 	position: absolute;
 	top: 15%;
 	bottom: 0px;
-	left: 44.5%;
+	left: 30%;
 	right: 0px;
 	height: 45%;
 }
@@ -131,9 +131,6 @@ li a:active {
 	/*Design*/
 table {
 	width: 100%;
-}
-
-table tr td:nth-child(5) {
 	text-align: center;
 }
 
@@ -142,16 +139,29 @@ table thead th:hover{
 	color: #151515;
 }
 
-th{
+table th{
 	/*Design*/
 	text-align:center;
-	width:110px;
+	width:50px;
 }
 
-tr {
-	text-align: center;
-	width: 100px;
+table td {
+	overflow:hidden;
+	word-break: break-all;
 }
+
+/*Definierte*/
+#refresherButton {
+	position: fixed;
+	height: 112px;
+	width: 112px;
+	right:30px;
+	bottom:60px;
+	border-style: none;
+	background-image: url(../images/refreshButton.png);
+}
+
+/*Klassen*/
 .button{
 	width: 60px;
 	font-family: verdana;
@@ -161,16 +171,6 @@ tr {
  	border: none;
 	border-radius: 30px;
  	text-decoration: none;
-}
-
-#refresherButton {
-	position: fixed;
-	height: 112px;
-	width: 112px;
-	right:30px;
-	bottom:60px;
-	border-style: none;
-	background-image: url(../images/refreshButton.png);
 }
 
 
