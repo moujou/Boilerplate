@@ -30,11 +30,13 @@ main {
 	width: auto;
 	/*Position*/
 	position: absolute;
-	top: 10%;
+	top: 9%;
 	bottom: 0px;
 	left: 30%;
 	right: 0px;
 	height: 45%;
+	border: solid;
+	border-radius: 10px;
 }
 
 main > section{
@@ -134,22 +136,26 @@ li a:active {
 table {
 	width: 100%;
 	text-align: center;
+	border-collapse: collapse;
 }
-
-table thead th:hover{
-	background: #9966FF;
-	color: #151515;
+table tr:nth-child(2n) {
+	background-color:#262626;
 }
 
 table th{
 	/*Design*/
 	text-align:center;
 	width:50px;
+	padding: 0px 0px 10px 0px;
 }
 
 table td {
 	overflow:hidden;
 	word-break: break-all;
+}
+
+hr {
+	border-color:#CC9966;
 }
 
 /*Definierte*/
@@ -161,6 +167,10 @@ table td {
 	bottom:60px;
 	border-style: none;
 	background-image: url(../images/refreshButton.png);
+}
+
+#taskHead {
+	padding: 0px 0px 0px 10px;
 }
 
 /*Klassen*/

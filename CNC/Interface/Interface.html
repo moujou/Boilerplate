@@ -47,8 +47,8 @@
 			</table>
 		</section>
 		<section id="tasks">
-			<form>
-				<b>ID:</b> <input type="text" id ="id">
+			<form id = "taskHead">	
+				<h1>Task anlegen</h1>
 				<b>Type:</b> <select names = "typen" id = "type" >
 						<option value="hash-md5">Hash MD5</option>
 						<option value="hash-sha256">Hash SHA256</option>
@@ -57,6 +57,7 @@
 				<b>Date:</b> <input type="Text" id = "data">
 				<button id="buttonTask" class="button" onclick="sendApiTask(document.getElementById(id).value, document.getElementById('type').value, document.getElementById('data').value)">Send</button>
 			</form>	
+			<hr>
 			<table id="task-overview">
 				<thead>
 					<tr>
