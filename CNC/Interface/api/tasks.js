@@ -39,7 +39,7 @@ var taskRequest = function() {
 
 };
 
-var sendApiTask = function(id, type, data) {
+var sendApiTask = function(type, data) {
 	
 	var xhr = new XMLHttpRequest();
 	
@@ -49,8 +49,7 @@ var sendApiTask = function(id, type, data) {
 	xhr.setRequestHeader('Token', 'cc444569854e9de0b084ab2b8b1532b2');
 	xhr.responseType = 'json';
 	
-	data = {"id" : parseInt(id,10), 
-			"type" : type, 
+	data = {"type" : type, 
 			"data" : {'input': data,
 					'output' : null} 
 	};
