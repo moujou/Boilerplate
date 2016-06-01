@@ -1,2 +1,1 @@
-[{"id" : 1234,"ip" : 1337,"task": 1,"workload": 1},{"id" : 666,"ip" : 9876,"task": 2,"workload": 1},{"id" : 934094,"ip" : 888,"task": 3,"workload": 1},{"id" : 123456,"ip" : 567,"task": 4,"workload": 1}]
-		
+[{"id" : 1,"ip" : "13.234.223","task": 1,"workload": 1}]
