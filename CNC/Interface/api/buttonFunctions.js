@@ -14,7 +14,7 @@ var sendActionInfo = function(id, cmd) {
 	
 	var xhr  = new XMLHttpRequest();
 	
-	xhr.open('POST', 'http://botnet.artificial.engineering:8080/api/Status');
+	xhr.open('POST', 'http://localhost:3000/api/Status');
 
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.setRequestHeader('Token', 'cc444569854e9de0b084ab2b8b1532b2');
