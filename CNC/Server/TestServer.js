@@ -31,11 +31,6 @@ app.get('/api/Status', (req, res) => {
 
 var datenbankTasks = [];
 
-fs.readFile('./task.txt','utf8', (err, data) => {
-	
-	datenbankTasks = JSON.parse(data.toString());
-});
-
 app.get('/api/Tasks', (req, res) => {
 	
 	if(datenbankTasks instanceof Array) {
@@ -43,21 +38,55 @@ app.get('/api/Tasks', (req, res) => {
 	}
 });
 
+app.get('/api/Tasks/:id', (req, res) => {
+		
+	var url = require('url');
+	var pathname = url.parse(req.url).pathname;
+	
+	var idValue = parseInt(pathname.split('/')[3]);
+	
+	if(datenbankTasks instanceof Array) {
+		if(datenbankTasks[parseInt(idValue)] != null) {
+			res.send(JSON.stringify(datenbankTasks[parseInt(idValue)]));
+		} else {
+			res.send(JSON.stringify("Fail - Task: Kein Task mit der ID: " 
+									+ parseInt(idValue) + " vorhanden!"));
+		}
+	}
+});
+
+var taskCounter = 0;
+
 app.post('/api/Tasks', (req, res) => {
 	var admin	   = 'cc444569854e9de0b084ab2b8b1532b2';
 	var user 	   = req.get('Token');
 	
-	if(req.body !== null) {
-		datenbankTasks.push(req.body);
+	if(user === admin) {
+		if(req.body.data.input !== "") {
+			req.body.id = taskCounter;
+			datenbankTasks.push(req.body);
+			taskCounter++;
+		} else {
+			console.log("Fail - Task: Leerer Task");
+		}
 	} else {
-		console.log("Fail - Task")
+		console.log("Task - Fail: Keine Erlaubnis (Falscher Token)");
 	}
 	
-	fs.writeFile('./task.txt', JSON.stringify(req.body), (err) => {
+	fs.writeFile('./task.txt', JSON.stringify(datenbankTasks), (err) => {
 		if(err) throw err;
-		
-		console.log("Task geschrieben!");
 	});
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+	
+var currentTaskFile = fs.statSync('./task.txt');
+
+	if(currentTaskFile["size"] != 0) {
+		fs.readFile('./task.txt','utf8', (err, data) => {
+			datenbankTasks = JSON.parse(data.toString());
+			taskCounter = datenbankTasks.length;
+		});
+		console.log("Gelesen");
+	}
+});
