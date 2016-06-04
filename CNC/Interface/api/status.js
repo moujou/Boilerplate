@@ -4,7 +4,7 @@ var initialize = function() {
 	var content = document.querySelector('#status-overview tbody');
 	
 
-	xhr.open('GET', 'http://botnet.artificial.engineering:8080/api/Status');
+	xhr.open('GET', 'http://localhost:3000/api/Status');
 	xhr.responseType = 'json';
 	
 	xhr.onload = function() {
