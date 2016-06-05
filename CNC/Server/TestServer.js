@@ -12,7 +12,6 @@ app.use(parser.json());
 var datenbankStatus =  [];
 
 //GET - STATUS
-
 app.get('/api/Status/:id', (req, res) => {
 	
 	if(datenbankTasks instanceof Array) {
@@ -26,13 +25,25 @@ app.get('/api/Status/:id', (req, res) => {
 });
 
 //POST - STATUS
-app.post('api/Status', (req, res) => {
-	var adminToken = 'cc444569854e9de0b084ab2b8b1532b2';
+app.post('/api/Status', (req, res) => {
+	var admin	   = 'cc444569854e9de0b084ab2b8b1532b2';
 	var user 	   = req.get('Token');
 	
+	if(admin === user) {
+		if(req.body.status == false) {
+			datenbankStatus[req.body.id].workload = 0;
+		} else {
+			datenbankStatus[req.body.id].workload = 1;	
+		}
+			res.send(JSON.stringify({message:'OK'}));	
+	} else {
+		console.log("Status - Fail: Keine Erlaubnis (Falscher Token)");
+		res.send(JSON.stringify({message:'NOT OK'}));
+	}
 });
 
-//LESEN - STATUS
+
+//LESEN - STATUS + GET STATUS
 fs.readFile('./status.txt','utf8', (err, data) => {
 	if (err) throw err;
 	
