@@ -7,8 +7,6 @@ fs.readFile('./tasks.txt', 'utf8', (err, data) => {
 	console.log("yeee"); // false
 };
 
-//fs.writeFile('./task.txt', 'Hallo', (err) => {
-	
-
-	//console.log("yeee"); 
-//});								//schreiben
+fs.writeFile('./task.txt', 'Hallo', (err) => {
+	if (err) throw err;
+});							

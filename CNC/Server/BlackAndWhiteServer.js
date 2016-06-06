@@ -3,6 +3,8 @@ var app 	= express();
 var parser  = require('body-parser');
 var cors    = require('cors');
 var fs	    = require('fs');
+
+var admin	   = 'cc444569854e9de0b084ab2b8b1532b2';
 						
 app.use(cors());
 
@@ -26,8 +28,9 @@ app.get('/api/Status/:id', (req, res) => {
 
 //POST - STATUS
 app.post('/api/Status', (req, res) => {
-	var admin	   = 'cc444569854e9de0b084ab2b8b1532b2';
 	var user 	   = req.get('Token');
+	
+	var tempStatusDatenbankSchreiben = [];
 	
 	if(admin === user) {
 		if(req.body.status == false) {
@@ -35,7 +38,18 @@ app.post('/api/Status', (req, res) => {
 		} else {
 			datenbankStatus[req.body.id].workload = 1;	
 		}
-			res.send(JSON.stringify({message:'OK'}));	
+			
+		for(var i = 0; i < datenbankStatus.length; i++) {
+			if(datenbankStatus[i] != null) {
+				tempStatusDatenbankSchreiben.push(datenbankStatus[i]);
+			}
+		}
+			
+		fs.writeFile('./status.txt', JSON.stringify(tempStatusDatenbankSchreiben), (err) => {
+			if (err) throw err;
+		});
+
+			res.send(JSON.stringify({message:'OK'}));			
 	} else {
 		console.log("Status - Fail: Keine Erlaubnis (Falscher Token)");
 		res.send(JSON.stringify({message:'NOT OK'}));
@@ -89,7 +103,6 @@ app.get('/api/Tasks/:id', (req, res) => {
 var taskCounter = 0;
 
 app.post('/api/Tasks', (req, res) => {
-	var admin	   = 'cc444569854e9de0b084ab2b8b1532b2';
 	var user 	   = req.get('Token');
 	
 	if(user === admin) {
