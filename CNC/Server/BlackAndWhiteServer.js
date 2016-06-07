@@ -14,11 +14,20 @@ app.use(parser.json());
 var datenbankStatus =  [];
 
 //GET - STATUS
+app.get('/api/Status', (req, res) => {
+		if(datenbankStatus instanceof Array) {
+			res.send(JSON.stringify(datenbankStatus));
+		}
+});
+
 app.get('/api/Status/:id', (req, res) => {
 	
-	if(datenbankTasks instanceof Array) {
-		if(datenbankStatus[parseInt(req.params.id)] != null) {
-			res.send(JSON.stringify(datenbankStatus[parseInt(req.params.id)]));
+	if(datenbankStatus instanceof Array) {
+		
+		var gefundenesObjekt = datenbankStatus.find(function(object) { return object.id == req.params.id; });
+		
+		if(gefundenesObjekt !== undefined) {
+			res.send(JSON.stringify(gefundenesObjekt));
 		} else {
 			res.send(JSON.stringify("Fail - Status: Kein Status mit der ID: " 
 									+ parseInt(req.params.id) + " vorhanden!"));
@@ -30,26 +39,20 @@ app.get('/api/Status/:id', (req, res) => {
 app.post('/api/Status', (req, res) => {
 	var user 	   = req.get('Token');
 	
-	var tempStatusDatenbankSchreiben = [];
+	var gefundenesObjekt = datenbankStatus.find(function(object) { return object.id == req.body.id; });
 	
 	if(admin === user) {
 		if(req.body.status == false) {
-			datenbankStatus[req.body.id].workload = 0;
+			gefundenesObjekt.workload = 0;
 		} else {
-			datenbankStatus[req.body.id].workload = 1;	
+			gefundenesObjekt.workload = 1;	
 		}
-			
-		for(var i = 0; i < datenbankStatus.length; i++) {
-			if(datenbankStatus[i] != null) {
-				tempStatusDatenbankSchreiben.push(datenbankStatus[i]);
-			}
-		}
-			
-		fs.writeFile('./status.txt', JSON.stringify(tempStatusDatenbankSchreiben), (err) => {
+		
+		fs.writeFile('./status.txt', JSON.stringify(datenbankStatus), (err) => {
 			if (err) throw err;
 		});
 
-			res.send(JSON.stringify({message:'OK'}));			
+		res.send(JSON.stringify({message:'OK'}));			
 	} else {
 		console.log("Status - Fail: Keine Erlaubnis (Falscher Token)");
 		res.send(JSON.stringify({message:'NOT OK'}));
@@ -57,27 +60,15 @@ app.post('/api/Status', (req, res) => {
 });
 
 
-//LESEN - STATUS + GET STATUS
+//LESEN - STATUS
 fs.readFile('./status.txt','utf8', (err, data) => {
 	if (err) throw err;
 	
-	var tempStatusDatenbank = JSON.parse(data.toString());
-	
-	app.get('/api/Status', (req, res) => {
-		if(tempStatusDatenbank) {
-			res.send(JSON.stringify(tempStatusDatenbank));
-		}
-	});
-	
-	for(var i = 0; i < tempStatusDatenbank.length; i++) {
-		if(tempStatusDatenbank[i] != null) {
-			datenbankStatus[tempStatusDatenbank[i].id] = tempStatusDatenbank[i];
-		}	
-	}
+	datenbankStatus = JSON.parse(data.toString());
+
 });
 
 //GET - TASKS
-
 var datenbankTasks = [];
 
 app.get('/api/Tasks', (req, res) => {
@@ -107,10 +98,19 @@ app.post('/api/Tasks', (req, res) => {
 	
 	if(user === admin) {
 		if(req.body.data.input !== "") {
-			req.body.id = taskCounter;
-			datenbankTasks.push(req.body);
-			taskCounter++;
-			res.send(JSON.stringify({message:'OK'}));
+			if(datenbankTasks) {
+				datenbankTasks[req.body.id] = req.body;
+				console.log("Task an mit der ID: " + req.body.id + " wurde modifiziert.");
+			} else {
+				//
+				req.body.id = taskCounter;
+				datenbankTasks.push(req.body);
+				
+				console.log("Task an mit der ID: " + taskCounter + " wurde geschrieben.");
+				
+				taskCounter++;
+				res.send(JSON.stringify({message:'OK'}));
+			}
 		} else {
 			console.log("Fail - Task: Leerer Task");
 			res.send(JSON.stringify({message:'NOT OK'}));
@@ -123,6 +123,7 @@ app.post('/api/Tasks', (req, res) => {
 		if(err) throw err;
 	});
 });
+
 
 //TASKS LESEN + SERVER STARTEN
 app.listen(3000, () => {
