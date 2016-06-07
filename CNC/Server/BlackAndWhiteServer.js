@@ -15,9 +15,9 @@ var datenbankStatus =  [];
 
 //GET - STATUS
 app.get('/api/Status', (req, res) => {
-		if(datenbankStatus instanceof Array) {
-			res.send(JSON.stringify(datenbankStatus));
-		}
+	if(datenbankStatus instanceof Array) {
+		res.send(JSON.stringify(datenbankStatus));
+	}
 });
 
 app.get('/api/Status/:id', (req, res) => {
@@ -30,7 +30,7 @@ app.get('/api/Status/:id', (req, res) => {
 			res.send(JSON.stringify(gefundenesObjekt));
 		} else {
 			res.send(JSON.stringify("Fail - Status: Kein Status mit der ID: " 
-									+ parseInt(req.params.id) + " vorhanden!"));
+									+ req.params.id + " vorhanden!"));
 		}
 	}
 });
@@ -65,7 +65,6 @@ fs.readFile('./status.txt','utf8', (err, data) => {
 	if (err) throw err;
 	
 	datenbankStatus = JSON.parse(data.toString());
-
 });
 
 //GET - TASKS
@@ -85,7 +84,7 @@ app.get('/api/Tasks/:id', (req, res) => {
 			res.send(JSON.stringify(datenbankTasks[parseInt(req.params.id)]));
 		} else {
 			res.send(JSON.stringify("Fail - Task: Kein Task mit der ID: " 
-									+ parseInt(req.params.id) + " vorhanden!"));
+									+ req.params.id + " vorhanden!"));
 		}
 	}
 });
@@ -95,21 +94,27 @@ var taskCounter = 0;
 
 app.post('/api/Tasks', (req, res) => {
 	var user 	   = req.get('Token');
+	var gefundenesObjekt;
 	
 	if(user === admin) {
 		if(req.body.data.input !== "") {
-			if(datenbankTasks) {
-				datenbankTasks[req.body.id] = req.body;
-				console.log("Task an mit der ID: " + req.body.id + " wurde modifiziert.");
+			
+			gefundenesObjekt = datenbankTasks.find(function(object) { return object.id == req.body.id; });
+			
+			if(gefundenesObjekt != undefined) {
+				modifiziereTask(gefundenesObjekt, req.body, res);
 			} else {
-				//
 				req.body.id = taskCounter;
-				datenbankTasks.push(req.body);
+				gefundenesObjekt = datenbankTasks.find(function(object) { return object.id == req.body.id; });
 				
-				console.log("Task an mit der ID: " + taskCounter + " wurde geschrieben.");
-				
+				if (gefundenesObjekt != undefined) {
+					modifiziereTask(gefundenesObjekt, req.body, res);
+				} else {
+					datenbankTasks.push(req.body);
+					console.log("Task an mit der ID: " + taskCounter + " wurde geschrieben.");
+					res.send(JSON.stringify({message:'OK'}));
+				}
 				taskCounter++;
-				res.send(JSON.stringify({message:'OK'}));
 			}
 		} else {
 			console.log("Fail - Task: Leerer Task");
@@ -138,3 +143,10 @@ var currentTaskFile = fs.statSync('./task.txt');
 		console.log("Gelesen");
 	}
 });
+
+//FUNCTIONS
+var modifiziereTask = function(gefundenesObj, reqObj, response) {
+	datenbankTasks[datenbankTasks.indexOf(gefundenesObj)] = reqObj;
+	console.log("Task an mit der ID: " + reqObj.id + " wurde modifiziert.");
+	response.send(JSON.stringify({message:'OK'}));
+}
