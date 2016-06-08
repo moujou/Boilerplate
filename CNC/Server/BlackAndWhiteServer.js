@@ -37,11 +37,10 @@ app.get('/api/Status/:id', (req, res) => {
 
 //POST - STATUS
 app.post('/api/Status', (req, res) => {
-	var user 	   = req.get('Token');
 	
 	var gefundenesObjekt = datenbankStatus.find(function(object) { return object.id == req.body.id; });
 	
-	if(admin === user) {
+	if(pruefeAufToken(req.get('Token'))) {
 		if(req.body.status == false) {
 			gefundenesObjekt.workload = 0;
 		} else {
@@ -93,10 +92,9 @@ app.get('/api/Tasks/:id', (req, res) => {
 var taskCounter = 0;
 
 app.post('/api/Tasks', (req, res) => {
-	var user 	   = req.get('Token');
 	var gefundenesObjekt;
 	
-	if(user === admin) {
+	if(pruefeAufToken(req.get('Token'))) {
 		if(req.body.data.input !== "") {
 			
 			gefundenesObjekt = datenbankTasks.find(function(object) { return object.id == req.body.id; });
@@ -110,11 +108,15 @@ app.post('/api/Tasks', (req, res) => {
 				if (gefundenesObjekt != undefined) {
 					modifiziereTask(gefundenesObjekt, req.body, res);
 				} else {
-					datenbankTasks.push(req.body);
-					console.log("Task an mit der ID: " + taskCounter + " wurde geschrieben.");
-					res.send(JSON.stringify({message:'OK'}));
+					taskCounter = ersteFreieID();
+	
+					if(taskCounter == datenbankTasks.length) {
+						req.body.id = taskCounter;
+						schreibeNeuerTask(req.body, res);
+					} else {
+						schreibeNeuerTask(req.body, res);
+					}
 				}
-				taskCounter++;
 			}
 		} else {
 			console.log("Fail - Task: Leerer Task");
@@ -138,15 +140,37 @@ var currentTaskFile = fs.statSync('./task.txt');
 	if(currentTaskFile["size"] != 0) {
 		fs.readFile('./task.txt','utf8', (err, data) => {
 			datenbankTasks = JSON.parse(data.toString());
-			taskCounter = datenbankTasks.length;
 		});
 		console.log("Gelesen");
 	}
 });
 
 //FUNCTIONS
+var pruefeAufToken = function(requestToken) {
+	return admin === requestToken;
+}
+
 var modifiziereTask = function(gefundenesObj, reqObj, response) {
 	datenbankTasks[datenbankTasks.indexOf(gefundenesObj)] = reqObj;
 	console.log("Task an mit der ID: " + reqObj.id + " wurde modifiziert.");
+	taskCounter++;
 	response.send(JSON.stringify({message:'OK'}));
+}
+
+var schreibeNeuerTask = function(reqObj, response) {
+	datenbankTasks.push(reqObj);
+	console.log("Task an mit der ID: " + reqObj.id + " wurde geschrieben.");
+	taskCounter++;
+	response.send(JSON.stringify({message:'OK'}));
+}
+
+var ersteFreieID = function() {
+	var ersteID;
+	
+	for(var i = 0; i < datenbankTasks.length; i++) {
+		if(datenbankTasks[i].id != i) {
+			ersteID = i;
+		}
+	}
+	return ersteID;
 }
