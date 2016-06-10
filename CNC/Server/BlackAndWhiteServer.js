@@ -41,17 +41,20 @@ app.post('/api/Status', (req, res) => {
 	var gefundenesObjekt = datenbankStatus.find(function(object) { return object.id == req.body.id; });
 	
 	if(pruefeAufToken(req.get('Token'))) {
-		if(req.body.status == false) {
-			gefundenesObjekt.workload = 0;
+		if(gefundenesObjekt != null) {
+			if(req.body.status == false) {
+				gefundenesObjekt.workload = 0;
+			} else {
+				gefundenesObjekt.workload = 1;	
+			}
 		} else {
-			gefundenesObjekt.workload = 1;	
+			datenbankStatus.push(req.body);
 		}
-		
+			
 		fs.writeFile('./status.txt', JSON.stringify(datenbankStatus), (err) => {
 			if (err) throw err;
 		});
-
-		res.send(JSON.stringify({message:'OK'}));			
+		res.send(JSON.stringify({message:'OK'}));
 	} else {
 		console.log("Status - Fail: Keine Erlaubnis (Falscher Token)");
 		res.send(JSON.stringify({message:'NOT OK'}));
@@ -136,16 +139,18 @@ app.post('/api/Tasks', (req, res) => {
 app.listen(3000, () => {
 	
 var currentTaskFile = fs.statSync('./task.txt');
-
+	
+	console.log("Server gestartet...");
+	
 	if(currentTaskFile["size"] != 0) {
 		fs.readFile('./task.txt','utf8', (err, data) => {
 			datenbankTasks = JSON.parse(data.toString());
 		});
-		console.log("Gelesen");
+		console.log("Tasks Gelesen");
 	}
 });
 
-//FUNCTIONS
+//FUNKTIONEN
 var pruefeAufToken = function(requestToken) {
 	return admin === requestToken;
 }
