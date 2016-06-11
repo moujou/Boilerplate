@@ -5,13 +5,15 @@ var cors    = require('cors');
 var fs	    = require('fs');
 
 var admin	   = 'cc444569854e9de0b084ab2b8b1532b2';
+var taskCounter;
+var datenbankStatus =  [];
+var datenbankTasks = [];
 						
 app.use(cors());
 
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 
-var datenbankStatus =  [];
 
 //GET - STATUS
 app.get('/api/Status', (req, res) => {
@@ -41,14 +43,14 @@ app.post('/api/Status', (req, res) => {
 	var gefundenesObjekt = datenbankStatus.find(function(object) { return object.id == req.body.id; });
 	
 	if(pruefeAufToken(req.get('Token'))) {
-		if(gefundenesObjekt != null) {
+		if(gefundenesObjekt != undefined) {
 			if(req.body.status == false) {
 				gefundenesObjekt.workload = 0;
 			} else {
 				gefundenesObjekt.workload = 1;	
 			}
 		} else {
-			datenbankStatus.push(req.body);
+			console.log("Status - Fail: Kein Status mit der ID gefunden");
 		}
 			
 		fs.writeFile('./status.txt', JSON.stringify(datenbankStatus), (err) => {
@@ -70,7 +72,6 @@ fs.readFile('./status.txt','utf8', (err, data) => {
 });
 
 //GET - TASKS
-var datenbankTasks = [];
 
 app.get('/api/Tasks', (req, res) => {
 	
@@ -92,8 +93,6 @@ app.get('/api/Tasks/:id', (req, res) => {
 });
 
 //TASKS - POST
-var taskCounter = 0;
-
 app.post('/api/Tasks', (req, res) => {
 	var gefundenesObjekt;
 	
@@ -105,20 +104,15 @@ app.post('/api/Tasks', (req, res) => {
 			if(gefundenesObjekt != undefined) {
 				modifiziereTask(gefundenesObjekt, req.body, res);
 			} else {
+				
 				req.body.id = taskCounter;
 				gefundenesObjekt = datenbankTasks.find(function(object) { return object.id == req.body.id; });
 				
-				if (gefundenesObjekt != undefined) {
-					modifiziereTask(gefundenesObjekt, req.body, res);
+				if(gefundenesObjekt == undefined) {
+					schreibeNeuerTask(req.body, res);
 				} else {
-					taskCounter = ersteFreieID();
-	
-					if(taskCounter == datenbankTasks.length) {
-						req.body.id = taskCounter;
-						schreibeNeuerTask(req.body, res);
-					} else {
-						schreibeNeuerTask(req.body, res);
-					}
+					req.body.id = ++taskCounter;
+					schreibeNeuerTask(req.body, res);
 				}
 			}
 		} else {
@@ -145,6 +139,7 @@ var currentTaskFile = fs.statSync('./task.txt');
 	if(currentTaskFile["size"] != 0) {
 		fs.readFile('./task.txt','utf8', (err, data) => {
 			datenbankTasks = JSON.parse(data.toString());
+			taskCounter = datenbankTasks.length;
 		});
 		console.log("Tasks Gelesen");
 	}
@@ -167,15 +162,4 @@ var schreibeNeuerTask = function(reqObj, response) {
 	console.log("Task an mit der ID: " + reqObj.id + " wurde geschrieben.");
 	taskCounter++;
 	response.send(JSON.stringify({message:'OK'}));
-}
-
-var ersteFreieID = function() {
-	var ersteID;
-	
-	for(var i = 0; i < datenbankTasks.length; i++) {
-		if(datenbankTasks[i].id != i) {
-			ersteID = i;
-		}
-	}
-	return ersteID;
 }
