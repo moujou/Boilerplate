@@ -95,24 +95,31 @@ app.get('/api/Tasks/:id', (req, res) => {
 //TASKS - POST
 app.post('/api/Tasks', (req, res) => {
 	var gefundenesObjekt;
+	var botTask = true;
 	
 	if(pruefeAufToken(req.get('Token'))) {
 		if(req.body.data.input !== "") {
-			
+	
 			gefundenesObjekt = datenbankTasks.find(function(object) { return object.id == req.body.id; });
 			
 			if(gefundenesObjekt != undefined) {
 				modifiziereTask(gefundenesObjekt, req.body, res);
 			} else {
 				
-				req.body.id = taskCounter;
+				//Falls ein Task ohne ID gesendet wurde 
+				if(req.body.id === undefined) {
+					botTask = false;
+					req.body.id = ersteFreieID();
+				}
+				
+				//ISt ein Task mit der gegebenen ID vorhanenden?
 				gefundenesObjekt = datenbankTasks.find(function(object) { return object.id == req.body.id; });
 				
 				if(gefundenesObjekt == undefined) {
-					schreibeNeuerTask(req.body, res);
+					schreibeNeuerTask(req.body, res, botTask);
 				} else {
 					req.body.id = ++taskCounter;
-					schreibeNeuerTask(req.body, res);
+					schreibeNeuerTask(req.body, res, botTask);
 				}
 			}
 		} else {
@@ -126,6 +133,7 @@ app.post('/api/Tasks', (req, res) => {
 	fs.writeFile('./task.txt', JSON.stringify(datenbankTasks), (err) => {
 		if(err) throw err;
 	});
+	
 });
 
 
@@ -153,13 +161,29 @@ var pruefeAufToken = function(requestToken) {
 var modifiziereTask = function(gefundenesObj, reqObj, response) {
 	datenbankTasks[datenbankTasks.indexOf(gefundenesObj)] = reqObj;
 	console.log("Task an mit der ID: " + reqObj.id + " wurde modifiziert.");
-	taskCounter++;
 	response.send(JSON.stringify({message:'OK'}));
 }
 
-var schreibeNeuerTask = function(reqObj, response) {
+var schreibeNeuerTask = function(reqObj, response, bot) {
 	datenbankTasks.push(reqObj);
 	console.log("Task an mit der ID: " + reqObj.id + " wurde geschrieben.");
-	taskCounter++;
+	if (bot === false) {
+		taskCounter++;
+	}
 	response.send(JSON.stringify({message:'OK'}));
+}
+
+var ersteFreieID = function() {
+	var ID;
+	var gefundenesObjekt;
+	
+	for (var i = 1; i < datenbankTasks.length; i++) {
+		gefundenesObjekt = datenbankTasks.find(function(object) { return object.id == i; });
+		
+		if(gefundenesObjekt === undefined) {
+			return ID = i;
+		}
+	}
+	
+	return ID = taskCounter;
 }
