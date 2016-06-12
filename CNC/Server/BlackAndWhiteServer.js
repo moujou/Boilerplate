@@ -156,13 +156,13 @@ var currentTaskFile = fs.statSync('./task.txt');
 //FUNKTIONEN
 var pruefeAufToken = function(requestToken) {
 	return admin === requestToken;
-}
+};
 
 var modifiziereTask = function(gefundenesObj, reqObj, response) {
 	datenbankTasks[datenbankTasks.indexOf(gefundenesObj)] = reqObj;
 	console.log("Task an mit der ID: " + reqObj.id + " wurde modifiziert.");
 	response.send(JSON.stringify({message:'OK'}));
-}
+};
 
 var schreibeNeuerTask = function(reqObj, response, bot) {
 	datenbankTasks.push(reqObj);
@@ -171,7 +171,7 @@ var schreibeNeuerTask = function(reqObj, response, bot) {
 		taskCounter++;
 	}
 	response.send(JSON.stringify({message:'OK'}));
-}
+};
 
 var ersteFreieID = function() {
 	var ID;
@@ -186,4 +186,4 @@ var ersteFreieID = function() {
 	}
 	
 	return ID = taskCounter;
-}
+};
