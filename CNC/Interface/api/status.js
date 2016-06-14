@@ -57,3 +57,22 @@ var initialize = function() {
 	xhr.send(null);
 
 };
+
+function testStatus() {
+	
+	var statusType = document.getElementById('type').value;
+  	var statusData = document.getElementById('data').value;
+	var xhr = new XMLHttpRequest();
+
+	xhr.open('POST', "http://localhost:3000/api/status", true);
+  
+  	xhr.responseType = 'json';
+  	xhr.setRequestHeader('Content-Type', 'application/json');
+  	xhr.setRequestHeader('Token', 'cc444569854e9de0b084ab2b8b1532b2');
+
+	var data = {
+		ip: null
+	};
+
+	xhr.send(JSON.stringify(data));
+}

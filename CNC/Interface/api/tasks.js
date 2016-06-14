@@ -55,3 +55,24 @@ var sendApiTask = function(type, data) {
 	};
 	xhr.send(JSON.stringify(data));
 };
+
+function testTask() {
+	
+	var typeInput = document.getElementById('type').value;
+  	var dataInput = document.getElementById('data').value;
+	var xhr = new XMLHttpRequest();
+
+	xhr.open('POST', "http://localhost:3000/api/Tasks", true);
+  
+  	xhr.responseType = 'json';
+  	xhr.setRequestHeader('Content-Type', 'application/json');
+  	xhr.setRequestHeader('Token', 'cc444569854e9de0b084ab2b8b1532b2');
+
+	var data = {
+		id : 3,
+		data: { input : 'BOT'	
+		}	
+	};
+
+	xhr.send(JSON.stringify(data));
+}
