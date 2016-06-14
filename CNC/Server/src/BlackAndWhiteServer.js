@@ -49,6 +49,11 @@ app.post('/api/Status', (req, res) => {
 			} else {
 				gefundenesObjekt.workload = 1;	
 			}
+			
+			fs.writeFile('./status.txt', JSON.stringify(datenbankStatus), (err) => {
+					if (err) throw err;
+			});
+			
 			res.send(JSON.stringify({message:'OK'}));
 		} else {
 			
@@ -108,7 +113,7 @@ app.post('/api/Tasks', (req, res) => {
 	var gefundenesObjekt;
 	
 	if(pruefeAufToken(req.get('Token'))) {
-		if(req.body.data.input !== undefined) {
+		if(req.body.data.input !== "") {
 			
 			gefundenesObjekt = datenbankTasks.find(function(object) { return object.id == req.body.id; });
 			
