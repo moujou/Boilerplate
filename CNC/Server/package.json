@@ -15,12 +15,13 @@
     "url": "git://github.com/INT-WAW/Boilerplate.git"
   },
   "bin": {
-    "cnc-server": "./bin/server.js"
+    "cnc-server": "./bin/cnc-server.js"
   },
   "scripts": {
-    "start": "node ./bin/server.js 8080"
+    "start": "node --harmony ./bin/cnc-server.js 8080",
+    "build": "node ./node_modules/babel-cli/bin/babel.js src -d lib"
   },
-  "main": "./bin/server.js",
+  "main": "./lib/cnc-server.js",
   "bugs": {
     "url": "https://github.com/INT-WAW/Boilerplate/issues"
   },
@@ -31,9 +32,13 @@
     "bot"
   ],
   "dependencies": {
-    "express": "*",
-    "body-parser": "*"
+    "babel-polyfill": "*",
+    "koa": "next"
   },
   "devDependencies": {
+    "babel-cli": "*",
+	"babel-preset-es2015": "*",
+    "babel-plugin-transform-async-to-generator": "*",
+    "babel-plugin-transform-es2015-arrow-functions": "*"
   }
 }
