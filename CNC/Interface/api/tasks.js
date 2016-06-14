@@ -69,7 +69,7 @@ function testTask() {
   	xhr.setRequestHeader('Token', 'cc444569854e9de0b084ab2b8b1532b2');
 
 	var data = {
-		id : 3,
+		id : 3,  //hier eine ID einfügen
 		data: { input : 'BOT'	
 		}	
 	};

@@ -70,8 +70,10 @@ function testStatus() {
   	xhr.setRequestHeader('Content-Type', 'application/json');
   	xhr.setRequestHeader('Token', 'cc444569854e9de0b084ab2b8b1532b2');
 
-	var data = {
-		ip: null
+	var data = { //keine ID einfügen
+		ip: '1.33.7',
+		task: 0,
+		workload:0
 	};
 
 	xhr.send(JSON.stringify(data));
